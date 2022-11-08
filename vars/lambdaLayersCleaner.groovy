@@ -6,6 +6,9 @@
 // - Develop execution: lambdaLayerCleaner('dev', 4)
 
 def call(ENVIRONMENT, MAXVERSIONS) {
+  env.ENVIRONMENT = ENVIRONMENT
+  env.MAXVERSIONS = MAXVERSIONS
+
 sh '''  #!/bin/bash
   set -x
   environment=${ENVIRONMENT}
