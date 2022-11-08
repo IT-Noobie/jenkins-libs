@@ -9,8 +9,8 @@ def call(environment, maxVersions) {
   //env.environment = environment
   //env.maxVersions = maxVersions
 
-sh """#!/bin/bash
+sh '''#!/bin/bash
   echo ${environment}
-"""
+'''
 }
 
