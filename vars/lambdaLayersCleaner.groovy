@@ -17,7 +17,7 @@ sh """#!/bin/bash
   fi
   layersName=( \$(aws lambda list-layers | jq -r ".Layers[].LayerName") )
 
-  for layer in ${layersName\[@\]}
+  for layer in \${layersName[@]}
   do
 
     if [[ $layer != "${environment}-core-unicorn"* ]] && [[ $layer != "${environment}-core-analysis"* ]] && [[ $layer != "${environment}-core-setup"* ]];
