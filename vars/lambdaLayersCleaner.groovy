@@ -7,8 +7,7 @@
 
 def call(ENVIRONMENT, MAXVERSIONS) {
 	sh """#!/bin/sh
-	  set -x
-	  if [ \${ENVIRONMENT} != \'pro\' ] && [ \${ENVIRONMENT} != \'stg\' ] && [ \${ENVIRONMENT} != \'dev\' ];
+	  if [ {ENVIRONMENT} != \'pro\' ] && [ {ENVIRONMENT} != \'stg\' ] && [ {ENVIRONMENT} != \'dev\' ];
 	  then
 		  exit 1
 	  fi
@@ -16,7 +15,7 @@ def call(ENVIRONMENT, MAXVERSIONS) {
 	  for layer in ${layersName[@]}
 	  do
 
-		  if [[ $layer != "\${ENVIRONMENT}-core-unicorn"* ]] && [[ $layer != "\${ENVIRONMENT}-core-analysis"* ]] && [[ $layer != "\${ENVIRONMENT}-core-setup"* ]];
+		  if [[ $layer != "{ENVIRONMENT}-core-unicorn"* ]] && [[ $layer != "{ENVIRONMENT}-core-analysis"* ]] && [[ $layer != "{ENVIRONMENT}-core-setup"* ]];
 		  then
 		    continue
 		  fi
