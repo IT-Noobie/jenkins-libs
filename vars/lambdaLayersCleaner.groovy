@@ -6,7 +6,7 @@
 // - Develop execution: lambdaLayerCleaner('dev', 4)
 
 def call(ENVIRONMENT, MAXVERSIONS) {
-	sh """#!/bin/bash
+	sh """#!/bin/sh
 	  set -x
 	  if [ \${ENVIRONMENT} != \'pro\' ] && [ \${ENVIRONMENT} != \'stg\' ] && [ \${ENVIRONMENT} != \'dev\' ];
 	  then
