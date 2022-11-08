@@ -6,8 +6,7 @@
 // - Develop execution: lambdaLayerCleaner('dev', 4)
 
 def call(ENVIRONMENT, MAXVERSIONS) {
-  echo ENVIRONMENT, MAXVERSIONS
-sh '''  #!/bin/bash
+sh """  #!/bin/bash
   set -x
   environment=${ENVIRONMENT}
   if [ ${ENVIRONMENT} != \'pro\' ] && [ ${ENVIRONMENT} != \'stg\' ] && [ ${ENVIRONMENT} != \'dev\' ];
@@ -39,6 +38,6 @@ sh '''  #!/bin/bash
       echo "The following lambda layer has been deleted: ${layer_name}:${version}\n"
       unset "lambdaLayerVersions[${#lambdaLayerVersions[@]}-1]"
     done
-  done'''
+  done"""
 }
 
