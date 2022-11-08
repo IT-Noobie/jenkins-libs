@@ -37,10 +37,10 @@ def call(ENVIRONMENT, MAXVERSIONS) {
         layer_name=$(echo ${lambdaLayerVersions[${#lambdaLayerVersions[@]}-1]} | cut -d: -f7)
         echo "Proceeding to delete layer ${layer_name}:${version}"
         #aws lambda delete-layer-version --layer-name ${layer_name} --version-number ${version}
-        echo "The following lambda layer has been deleted: ${layer_name}:${version}\n"
+        echo "The following lambda layer has been deleted: ${layer_name}:${version}"
         unset "lambdaLayerVersions[${#lambdaLayerVersions[@]}-1]"
       done
-      echo "Number of versions of layer ${layer}: ${#lambdaLayerVersions[@]}"
+      echo "Number of versions of layer ${layer}: ${#lambdaLayerVersions[@]}\n"
     done
   '''
 }
