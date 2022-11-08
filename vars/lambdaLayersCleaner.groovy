@@ -6,12 +6,11 @@
 // - Develop execution: lambdaLayerCleaner('dev', 4)
 
 def call(ENVIRONMENT, MAXVERSIONS) {
-  env.ENVIRONMENT = ENVIRONMENT
-  env.MAXVERSIONS = MAXVERSIONS
+  //env.ENVIRONMENT = ENVIRONMENT
+  //env.MAXVERSIONS = MAXVERSIONS
 
 sh '''  #!/bin/bash
   printenv
-  set -x
   environment=${ENVIRONMENT}
   if [ ${ENVIRONMENT} != \'pro\' ] && [ ${ENVIRONMENT} != \'stg\' ] && [ ${ENVIRONMENT} != \'dev\' ];
   then
