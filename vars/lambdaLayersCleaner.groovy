@@ -14,8 +14,8 @@ sh """#!/bin/bash
     exit 1
   fi
   layersName=( \$(aws lambda list-layers | jq -r ".Layers[].LayerName") )
-
-  for layer in $layersName; do echo $layer; done
+  echo ${layersName}
+  #for layer in $layersName; do echo $layer; done
 """
 }
 
