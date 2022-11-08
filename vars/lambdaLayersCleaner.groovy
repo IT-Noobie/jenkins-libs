@@ -6,8 +6,6 @@
 // - Develop execution: lambdaLayerCleaner('dev', 4)
 
 def call(environment, maxVersions) {
-  //env.environment = environment
-  //env.maxVersions = maxVersions
 
 sh """#!/bin/bash
   echo ${environment}
@@ -17,7 +15,7 @@ sh """#!/bin/bash
   fi
   layersName=( \$(aws lambda list-layers | jq -r ".Layers[].LayerName") )
 
-  for layer in \$\{layersName[@]\}
+  for layer in "${layersName[@]}"
   do
 
     if [[ $layer != "${environment}-core-unicorn"* ]] && [[ $layer != "${environment}-core-analysis"* ]] && [[ $layer != "${environment}-core-setup"* ]];
