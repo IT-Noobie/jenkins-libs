@@ -11,7 +11,7 @@ def call(ENVIRONMENT, MAXVERSIONS) {
 
 sh '''#!/bin/bash
   set +x
-  if [ ${ENVIRONMENT} != \'pro\' ] && [ ${ENVIRONMENT} != \'stg\' ] && [ ${ENVIRONMENT} != \'dev\' ];
+  if [ ${ENVIRONMENT} != 'pro' ] && [ ${ENVIRONMENT} != 'stg' ] && [ ${ENVIRONMENT} != 'dev' ];
   then
     exit 1
   fi
@@ -40,6 +40,6 @@ sh '''#!/bin/bash
       echo "The following lambda layer has been deleted: ${layer_name}:${version}\n"
       unset "lambdaLayerVersions[${#lambdaLayerVersions[@]}-1]"
     done
-    echo "Number of version of layer ${layer}: ${#lambdaLayerVersions[@]}"
+    echo "Number of versions of layer ${layer}: ${#lambdaLayerVersions[@]}"
   done'''
 }
