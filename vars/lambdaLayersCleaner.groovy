@@ -5,14 +5,14 @@
 // - Staging execution: lambdaLayerCleaner('stg', 4)
 // - Develop execution: lambdaLayerCleaner('dev', 4)
 
-def call(ENVIRONMENT, MAXVERSIONS) {
-  //env.ENVIRONMENT = ENVIRONMENT
-  //env.MAXVERSIONS = MAXVERSIONS
+def call(environment, maxVersions) {
+  //env.environment = environment
+  //env.maxVersions = maxVersions
 
 sh '''  #!/bin/bash
   printenv
-  environment=${ENVIRONMENT}
-  if [ ${ENVIRONMENT} != \'pro\' ] && [ ${ENVIRONMENT} != \'stg\' ] && [ ${ENVIRONMENT} != \'dev\' ];
+  echo ${environment}
+  if [ ${environment} != \'pro\' ] && [ ${environment} != \'stg\' ] && [ ${environment} != \'dev\' ];
   then
     exit 1
   fi
@@ -20,7 +20,7 @@ sh '''  #!/bin/bash
   for layer in ${layersName[@]}
   do
 
-    if [[ $layer != "${ENVIRONMENT}-core-unicorn"* ]] && [[ $layer != "${ENVIRONMENT}-core-analysis"* ]] && [[ $layer != "${ENVIRONMENT}-core-setup"* ]];
+    if [[ $layer != "${environment}-core-unicorn"* ]] && [[ $layer != "${environment}-core-analysis"* ]] && [[ $layer != "${environment}-core-setup"* ]];
     then
       continue
     fi
@@ -32,7 +32,7 @@ sh '''  #!/bin/bash
       echo $i
     done
 
-    while [ ${#lambdaLayerVersions[@]} -gt ${MAXVERSIONS} ]
+    while [ ${#lambdaLayerVersions[@]} -gt ${maxVersions} ]
     do
       version=$(echo ${lambdaLayerVersions[${#lambdaLayerVersions[@]}-1]} | cut -d: -f8)
       layer_name=$(echo ${lambdaLayerVersions[${#lambdaLayerVersions[@]}-1]} | cut -d: -f7)
