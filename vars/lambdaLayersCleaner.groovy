@@ -7,7 +7,8 @@
 
 def call(ENVIRONMENT, MAXVERSIONS) {
 sh '''  #!/bin/bash
-  set +x
+  set -x
+  let environment=${ENVIRONMENT}
   if [ ${ENVIRONMENT} != \'pro\' ] && [ ${ENVIRONMENT} != \'stg\' ] && [ ${ENVIRONMENT} != \'dev\' ];
   then
     exit 1
