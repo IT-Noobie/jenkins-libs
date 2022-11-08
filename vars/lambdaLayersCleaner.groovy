@@ -5,7 +5,7 @@
 // - Staging execution: lambdaLayerCleaner('stg', 4)
 // - Develop execution: lambdaLayerCleaner('dev', 4)
 
-def lambdaLayerCleaner(ENVIRONMENT, MAXVERSIONS) {
+def call(ENVIRONMENT, MAXVERSIONS) {
 sh '''  #!/bin/bash
   set +x
   if [ ${ENVIRONMENT} != \'pro\' ] && [ ${ENVIRONMENT} != \'stg\' ] && [ ${ENVIRONMENT} != \'dev\' ];
