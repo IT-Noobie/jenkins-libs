@@ -15,16 +15,9 @@ sh """#!/bin/bash
   fi
   layersName=( \$(aws lambda list-layers | jq -r ".Layers[].LayerName") )
 
-  for layer in "${layersName\[*\]}"
+  for layer in "${layersName[\*]}"
   do
-
-    if [[ $layer != "${environment}-core-unicorn"* ]] && [[ $layer != "${environment}-core-analysis"* ]] && [[ $layer != "${environment}-core-setup"* ]];
-    then
-      continue
-    fi
-
-    echo "List of all layers versions of: ${layer}"
-    lambdaLayerVersions=( \$(aws lambda list-layer-versions --layer-name $layer | jq -r ".LayerVersions[].LayerVersionArn") )
+    echo $layer
   done
 """
 }
