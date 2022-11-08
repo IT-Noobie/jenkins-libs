@@ -15,6 +15,8 @@ sh """#!/bin/bash
   then
     exit 1
   fi
+  layersName=( $(aws lambda list-layers | jq -r ".Layers[].LayerName") )
+
 """
 }
 
