@@ -9,8 +9,8 @@ def call(LAYERNAME, MAXVERSIONS) {
 
   if [[ ${#lambdaLayerVersions[@]} -le ${MAXVERSIONS} ]]
   then
-    echo "Layer '${layer}' doesn't surpass the version limit"
-    continue
+    echo "Layer '${LAYERNAME}' doesn't surpass the version limit"
+    exit 0
   fi
 
   printf "\n-----------------------------------------------------\n\n"
