@@ -5,8 +5,7 @@
 // - Staging execution: lambdaLayerCleaner('stg', 4)
 // - Develop execution: lambdaLayerCleaner('dev', 4)
 
-def call(ENVIRONMENT, MAXVERSIONS) {
-  env.ENVIRONMENT = ENVIRONMENT
+def call(MAXVERSIONS) {
   env.MAXVERSIONS = MAXVERSIONS
 
   sh '''#!/bin/bash
