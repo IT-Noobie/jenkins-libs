@@ -37,7 +37,7 @@ def call(LAYERNAME, MAXVERSIONS) {
   do
     layer_name=$(echo ${layer} | cut -d: -f1)
     version=$(echo ${layer}| cut -d: -f2)
-    aws lambda delete-layer-version --layer-name ${layer_name} --version-number ${version}
+    #aws lambda delete-layer-version --layer-name ${layer_name} --version-number ${version}
     echo "The following lambda layer version has been deleted: ${layer_name}:${version}"
   done
   printf "\n-----------------------------------------------------\n\n"
