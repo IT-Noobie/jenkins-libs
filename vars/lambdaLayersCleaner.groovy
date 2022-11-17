@@ -29,10 +29,9 @@ def call(ENVIRONMENT, MAXVERSIONS) {
 
       while [ ${#lambdaLayerVersions[@]} -gt ${MAXVERSIONS} ]
       do
-        version=$(echo ${lambdaLayerVersions[${#lambdaLayerVersions[@]}-1]} | cut -d: -f8)
-        layer_name=$(echo ${lambdaLayerVersions[${#lambdaLayerVersions[@]}-1]} | cut -d: -f7)
+        layerNameVersion=$(echo ${lambdaLayerVersions[${#lambdaLayerVersions[@]}-1]} | cut -d: -f7-8)
+        layersToDelete.push("${layerNameVersion}")
 
-        layersToDelete.push("${layer_name}:${version}")
         unset "lambdaLayerVersions[${#lambdaLayerVersions[@]}-1]"
       done
 
