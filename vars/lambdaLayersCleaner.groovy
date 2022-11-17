@@ -25,16 +25,24 @@ def call(ENVIRONMENT, MAXVERSIONS) {
         echo $i
       done
 
+      layersToDelete=()
+
       while [ ${#lambdaLayerVersions[@]} -gt ${MAXVERSIONS} ]
       do
         version=$(echo ${lambdaLayerVersions[${#lambdaLayerVersions[@]}-1]} | cut -d: -f8)
         layer_name=$(echo ${lambdaLayerVersions[${#lambdaLayerVersions[@]}-1]} | cut -d: -f7)
-        echo "Proceeding to delete layer ${layer_name}:${version}"
-       #aws lambda delete-layer-version --layer-name ${layer_name} --version-number ${version} 
-        echo "The following lambda layer has been deleted: ${layer_name}:${version}"
+
+        layersToDelete.push("${layer_name}:${version}")
         unset "lambdaLayerVersions[${#lambdaLayerVersions[@]}-1]"
       done
-      echo "Number of versions of layer ${layer}: ${#lambdaLayerVersions[@]}\n"
+
+      echo "The following layers will be deleted: ${layersToDelete[*]}"
+      for layer in ${layersToDelete[@]} {
+        layer_name=$(echo $layer | cut -d: -f1)
+        version=$(echo $version| cut -d: -f2)
+        #aws lambda delete-layer-version --layer-name ${layer_name} --version-number ${version} 
+        echo "The following lamda layer version has been deleted: ${layer_name}:${version}" 
+      }
     done
   '''
 }
